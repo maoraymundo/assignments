@@ -1,0 +1,6 @@
+parameters:
+    calculator.service.class: AssignmentBundle\Services\CalculatorService
+
+services:
+    calculator.service: 
+        class: %calculator.service.class%

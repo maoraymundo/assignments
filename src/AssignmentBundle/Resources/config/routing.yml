@@ -1,0 +1,3 @@
+ass_home:
+    path: /assignment1
+    defaults: { _controller: AssignmentBundle:Home:index }

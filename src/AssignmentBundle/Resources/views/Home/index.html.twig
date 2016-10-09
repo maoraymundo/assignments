@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<style text="text/css">
+input {width: 30%!important; margin: 5px 20px;}
+button {padding: 5px 15px; margin: 0 0px 5px 0;}
+.but_del {padding: 5px 6px;}
+</style>
+
+{% endblock %}
+
+{% block body %}
+{{ form_start(form)}}
+<div class="col-sm-4">
+    <div class="row">
+        {{ form_widget(form.display) }}
+        {{ form_errors(form.display) }} 
+    </div>
+    <div class="row">
+            <div class="col-sm-1"><button type="button" value='1' class='but_num'>1</button></div>
+            <div class="col-sm-1"><button type="button" value='2' class='but_num'>2</button></div>
+            <div class="col-sm-1"><button type="button" value='3' class='but_num'>3</button></div>
+            <div class="col-sm-1"><button type="button" value='x' class='but_operation'>x</button></div>
+    </div>
+    <div class="row">
+            <div class="col-sm-1"><button type="button" value='4' class='but_num'>4</button></div>
+            <div class="col-sm-1"><button type="button" value='5' class='but_num'>5</button></div>
+            <div class="col-sm-1"><button type="button" value='6' class='but_num'>6</button></div>
+            <div class="col-sm-1"><button type="button" value='-' class='but_operation'>-</button></div>
+    </div>
+    <div class="row">
+            <div class="col-sm-1"><button type="button" value='del' class='but_del'>DEL</button></div>
+            <div class="col-sm-1"><button type="button" value='0' class='but_num'>0</button></div>
+            <div class="col-sm-1"><button type="submit" value='=' class='but_submit'>=</button></div>
+            <div class="col-sm-1"><button type="button" value='+' class='but_operation'>+</button></div>
+    </div>
+</div>
+
+{{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    var newresult = "{{ app.session.get('result') }}";
+    var prev; 
+
+    $('#ass_calculator_display').val(newresult);
+
+    $('.but_num').on('click', function() {
+        prev = $('#ass_calculator_display').val();
+        if (prev === undefined) prev='';
+
+        prev =  prev.concat($(this).attr('value'));
+        $('#ass_calculator_display').val(prev);
+    });
+
+    $('.but_operation').on ('click', function() {
+        $('#ass_calculator_operation').val($(this).attr('value'));
+        $('#ass_calculator_previous').val($('#ass_calculator_display').val());
+        $('#ass_calculator_display').val('');
+    });
+
+    $('.but_del').on('click', function() {
+        $('#ass_calculator_display').val('');
+    });
+});
+</script>
+
+{% endblock %}

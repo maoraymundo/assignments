@@ -19,14 +19,10 @@ class HomeController extends Controller
 
         if ($form->isValid()) {
             $service = $this->get('calculator.service');
-            if ($entity->getOperation() == '+') $action = 'add';
-            else if ($entity->getOperation() == '-') $action = 'subtract';
-            else if ($entity->getOperation() == 'x') $action = 'multiply';
-
             $service->setA($entity->getPrevious());
             $service->setB($entity->getDisplay());
 
-            $newdisplay = $service->{$action}();
+            $newdisplay = $service->{$entity->getOperation()}();
 
             $session->set('result', $newdisplay);
 

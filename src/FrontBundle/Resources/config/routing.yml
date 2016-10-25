@@ -1,0 +1,11 @@
+user_homepage:
+    path:   /
+    defaults: { _controller: FrontBundle:Login:index }
+
+user_profile:
+    path: /user
+    defaults: { _controller: FrontBundle:Front:index }
+
+user_profile_edit:
+    path: /user/edit
+    defaults: { _controller: FrontBundle:Front:edit }

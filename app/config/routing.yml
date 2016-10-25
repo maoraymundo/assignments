@@ -4,3 +4,6 @@ app:
 
 ass:
     resource: "@AssignmentBundle/Resources/config/routing.yml"
+
+front:
+    resource: "@FrontBundle/Resources/config/routing.yml"

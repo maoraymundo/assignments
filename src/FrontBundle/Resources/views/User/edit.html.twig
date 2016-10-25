@@ -1,0 +1,46 @@
+{% extends 'FrontBundle::base.html.twig' %}
+
+{% set user = app.security.getToken().getUser() %}
+{% set credentials = app.security.getToken().getCredentials() %}
+
+{% block css %}
+<style>
+.profile {font-size: 16px;}
+.profile .nickname {font-size: 26px;}
+.profile .view {text-align: right; padding: 2px; position: relative;}
+.profile .view select {background: #888; color: #333; width: 10%;}
+.profile .dropdown {display: inline-block;}
+.profile .about {margin: 2% 0 2% 0;}
+.pdb1 {padding-bottom: 1%;}
+.mt2 {margin-top: 2%;}
+
+.profile input[type="text"], .profile select {background-color: #222; border: none; color: #ccc; padding: .75%; width: 49%;}
+#razer_userbundle_edit_birthDay, #razer_userbundle_edit_birthMonth {width: 24%;}
+#razer_userbundle_edit_aboutMe {width: 83%;}
+</style>
+{% endblock %}
+
+{% block page_title %}
+Assignment - Profile Page
+{% endblock %}
+
+{% block content %}
+
+{{ form_start(form) }}
+<div class="col-sm-12 profile">
+    <div class="col-sm-10">
+        <div class="col-sm-12">
+            <div class="col-sm-10 pdb1">
+                <div class="col-sm-2">Name</div>
+                <div class="col-sm-7">{{ form_widget(form.firstName) }} {{ form_widget(form.lastName) }}</div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-2 mt2">
+                {{ form_widget(form.submit) }}
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}
+{% endblock %}

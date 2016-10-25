@@ -1,0 +1,61 @@
+parameters:
+    api.chos.class: ApiBundle\Services\RequestFormatter
+    api.sender.class: ApiBundle\Services\Sender
+
+    api.chos.base:
+        base_url:       https://chos.api.com
+        defaults:
+            verify:     false
+
+    api.chos.login.get:
+        uri:  /v1/login/get
+        request: 
+            UserDetails:
+                email: ~
+                phone: ~
+                password: ~
+
+    api.chos.user.get:
+        uri: /v1/user/get
+        request:
+            UserDetails:
+                userId: ~
+                token: ~
+
+    api.chos.user.create:
+        uri: /v1/user/post
+        request:
+            UserDetails:
+                email: ~
+                password: ~
+                FirstName: ~
+
+    api.chos.user.update:
+        uri: /v1/user/put
+        request:
+            UserDetails:
+                userId: ~
+                token: ~
+                LastName: ~
+                FirstName: ~
+
+    api.error.codes:
+        generic:
+            1000:   Invalid Password
+            1001:   Invalid Last Name
+            1002:   Invalid First Name
+            1003:   Invalid Email
+
+    api.generic.error: Whoops! Something went wrong. Do not panic. Our engineers are wroking on it.
+
+services:
+    api.chos.request:
+        class: %api.chos.class%
+
+    guzzle.chos.client:
+        class: %guzzle.http_client.class%
+        arguments: [%api.chos.base%]
+
+    api.sender:
+        class: %api.sender.class%
+        arguments: [@guzzle.chos.client, %api.error.codes%]

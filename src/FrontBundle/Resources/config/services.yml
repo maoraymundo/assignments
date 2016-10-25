@@ -1,0 +1,10 @@
+parameters:
+    user.class: FrontBundle\Entity\User
+    user.edit.formtype.class: FrontBundle\Form\UserEditFormType
+
+services:
+    user.edit.formtype:
+        class: %user.edit.formtype.class%
+
+    user.entity:
+        class: %user.class%

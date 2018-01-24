@@ -10,9 +10,9 @@ class DefaultControllerTest extends WebTestCase
     {
     	// basic controller testing example
         $client = static::createClient();
-
         $crawler = $client->request('GET', '/');
 
+        // controller assert testing
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
     }

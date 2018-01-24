@@ -8,6 +8,7 @@ class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
+    	// basic controller testing example
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/');

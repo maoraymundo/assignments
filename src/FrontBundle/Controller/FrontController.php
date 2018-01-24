@@ -49,6 +49,7 @@ class FrontController extends Controller
 
     private function createEditForm($entity)
     {
+        // form builder
         $form = $this->createForm($this->get('user.edit.formtype'), $entity, array(
             'action' => $this->generateUrl('user_profile_edit'),
             'method' => 'POST',
